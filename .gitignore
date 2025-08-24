@@ -137,3 +137,15 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# ---------- project-specific ignores ----------
+# local backups / audit output
+_backup/
+audit.json
+
+# OS & tool metadata
+.DS_Store
+.vercel
+
+# editor settings (optional to keep repo clean)
+.vscode/
