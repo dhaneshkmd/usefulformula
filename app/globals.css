@@ -147,14 +147,40 @@ th,td{border:1px solid var(--border);padding:.5rem}
 }
 
 /* ---------- Single-formula page: force black text on white ---------- */
-/* Apply alongside .formula-box in the formula detail page */
 .formula-box--light{
   background:#ffffff !important;
   color:#0f172a !important;
-  -webkit-text-fill-color:currentColor; /* guards against Android/Samsung dark-mode overrides */
+  -webkit-text-fill-color:currentColor; /* guard vs. Android/Samsung dark overrides */
 }
-
-/* Slightly larger on small screens for readability */
 @media (max-width:640px){
   .formula-box--light{font-size:15px}
+}
+
+/* ---------- Docs layout: fix mobile right-shift ---------- */
+/* If your docs markup wraps content as:
+   <div class="docs">
+     <aside class="toc">...</aside>
+     <article class="prose docs-content">...</article>
+   </div>
+*/
+.docs{
+  display:grid;
+  gap:20px;
+  grid-template-columns:1fr;       /* stack on mobile */
+  align-items:start;
+}
+.docs-content{ min-width:0; }      /* prevent overflow pushing layout */
+.toc{ font-size:14px; color:var(--muted); }
+.toc h4{ margin:0 0 8px; color:var(--fg); }
+
+@media (min-width:960px){
+  .docs{ grid-template-columns:240px 1fr; }  /* 2 cols on desktop */
+  .toc{ position:sticky; top:76px; }
+}
+
+/* Hard overrides if existing page used margins or different class names */
+@media (max-width:959px){
+  .docs-grid{ display:block !important; }
+  .docs-aside, .toc{ position:static !important; width:100% !important; }
+  .prose, .docs-content{ margin:0 !important; }
 }
