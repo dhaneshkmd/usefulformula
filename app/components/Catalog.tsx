@@ -63,7 +63,10 @@ export default function Catalog({ formulas }: { formulas: Formula[] }) {
   return (
     <div className="container">
       {/* hero */}
-      <h1 className="hero-title" style={{ fontSize: 42, marginBottom: 8 }}>
+      <h1
+        className="hero-title"
+        style={{ fontSize: "clamp(24px, 4.5vw, 42px)", marginBottom: 8 }}
+      >
         Find the right formula in seconds
       </h1>
       <p className="subtle" style={{ marginBottom: 18 }}>
@@ -71,13 +74,14 @@ export default function Catalog({ formulas }: { formulas: Formula[] }) {
       </p>
 
       {/* search */}
-      <div className="search" role="search">
+      <div className="search" role="search" aria-label="Formula search">
         <span aria-hidden>🔎</span>
         <input
           placeholder="Search formulas…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           aria-label="Search formulas"
+          inputMode="search"
         />
         {q && (
           <button
@@ -93,7 +97,7 @@ export default function Catalog({ formulas }: { formulas: Formula[] }) {
       </div>
 
       {/* chips (categories) */}
-      <div className="chips">
+      <div className="chips" role="toolbar" aria-label="Filter by category">
         <button
           className={`chip ${!cat ? "active" : ""}`}
           onClick={() => setCat(null)}
@@ -125,32 +129,41 @@ export default function Catalog({ formulas }: { formulas: Formula[] }) {
       {/* cards */}
       {list.length > 0 ? (
         <div className="grid">
-          {list.map((f) => (
-            <Link key={f.id} href={`/formula/${f.id}`} className="card">
-              <div className="kicker">{f.subcategory || f.category}</div>
-              <h3>
-                {(EMOJI[f.category] ?? "🧮") + " "}
-                {f.title}
-              </h3>
+          {list.map((f) => {
+            const emoji = EMOJI[f.category] ?? "🧮";
+            return (
+              <Link
+                key={f.id}
+                href={`/formula/${f.id}`}
+                className="card"
+                aria-label={`${f.title} — open formula`}
+                prefetch={false}
+              >
+                <div className="kicker">{f.subcategory || f.category}</div>
+                <h3>
+                  <span aria-hidden>{emoji} </span>
+                  {f.title}
+                </h3>
 
-              {/* 14px preview chip */}
-              <div className="formula-box" style={{ marginTop: 8 }}>
-                {f.formula_raw}
-              </div>
+                {/* preview chip */}
+                <div className="formula-box" style={{ marginTop: 8 }}>
+                  {f.formula_raw}
+                </div>
 
-              <div className="meta">
-                <span className="badge">{f.category.split("&")[0]}</span>
-                {f.subcategory && (
-                  <span
-                    className="badge"
-                    style={{ background: "#e8f5e9", color: "#1b5e20" }}
-                  >
-                    {f.subcategory}
-                  </span>
-                )}
-              </div>
-            </Link>
-          ))}
+                <div className="meta">
+                  <span className="badge">{f.category.split("&")[0]}</span>
+                  {f.subcategory && (
+                    <span
+                      className="badge"
+                      style={{ background: "#e8f5e9", color: "#1b5e20" }}
+                    >
+                      {f.subcategory}
+                    </span>
+                  )}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       ) : (
         <p className="subtle" style={{ marginTop: 14 }}>
