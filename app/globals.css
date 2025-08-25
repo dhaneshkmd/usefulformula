@@ -1,6 +1,6 @@
 /* app/globals.css */
 
-/* ---------- Base theme ---------- */
+/* ===================== Base theme ===================== */
 :root{
   --bg:#f7f8fb;
   --panel:#ffffff;
@@ -10,10 +10,10 @@
   --ring:#3b82f6;
   --shadow:0 8px 24px rgba(2,8,23,.06);
 
-  /* formula previews font size */
+  /* Formula previews */
   --formula-font:14px;
 
-  /* formula chip colors (light) */
+  /* Formula chip colors (light) */
   --formula-bg:#f3f4f6;
   --formula-fg:#111827;
 }
@@ -26,13 +26,13 @@
   --ring:#60a5fa;
   --shadow:0 10px 26px rgba(0,0,0,.35);
 
-  /* formula chip colors (dark) */
+  /* Formula chip colors (dark) */
   --formula-bg:#0f172a;
   --formula-fg:#e6edf3;
 }
 
-/* ---------- Resets ---------- */
-*{box-sizing:border-box}
+/* ===================== Resets ===================== */
+*{ box-sizing:border-box }
 html,body{
   margin:0; padding:0;
   background:var(--bg); color:var(--fg);
@@ -41,53 +41,53 @@ html,body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
-a{color:inherit;text-decoration:none}
-img,svg{max-width:100%;height:auto}
+a{ color:inherit; text-decoration:none }
+img,svg{ max-width:100%; height:auto }
 
-/* ---------- Layout helpers ---------- */
-.container{max-width:1100px;margin:0 auto;padding:24px}
-.hero-title{font-weight:900;letter-spacing:-.02em}
-.subtle{color:var(--muted)}
+/* ===================== Layout helpers ===================== */
+.container{ max-width:1100px; margin:0 auto; padding:24px }
+.hero-title{ font-weight:900; letter-spacing:-.02em }
+.subtle{ color:var(--muted) }
 
-/* ---------- Header / Footer spacing ---------- */
+/* ===================== Header / Footer ===================== */
 .header-wrap,.footer-wrap{
-  max-width:1100px;margin:0 auto;padding:12px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:16px;flex-wrap:wrap;
+  max-width:1100px; margin:0 auto; padding:12px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; flex-wrap:wrap;
 }
-.nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav{ display:flex; gap:16px; flex-wrap:wrap }
 
-/* ---------- Search bar ---------- */
+/* ===================== Search ===================== */
 .search{
-  display:flex;align-items:center;gap:10px;
+  display:flex; align-items:center; gap:10px;
   border:1px solid var(--border);
   background:var(--panel);
-  padding:14px 16px;border-radius:14px;
+  padding:14px 16px; border-radius:14px;
   box-shadow:0 1px 0 rgba(16,24,40,.02);
 }
 .search input{
-  border:none;outline:0;width:100%;font-size:16px;
-  background:transparent;color:var(--fg);
+  border:none; outline:0; width:100%; font-size:16px;
+  background:transparent; color:var(--fg);
 }
-.search input::placeholder{color:var(--muted)}
-.search:focus-within{box-shadow:0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent)}
+.search input::placeholder{ color:var(--muted) }
+.search:focus-within{ box-shadow:0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent) }
 
-/* ---------- Category chips ---------- */
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+/* ===================== Category chips ===================== */
+.chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px }
 .chip{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 12px;border-radius:999px;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:999px;
   border:1px solid var(--border);
-  background:var(--panel);color:var(--fg);
-  font-size:14px;cursor:pointer;
-  transition:background .15s,border-color .15s,transform .08s;
+  background:var(--panel); color:var(--fg);
+  font-size:14px; cursor:pointer;
+  transition:background .15s, border-color .15s, transform .08s;
 }
-.chip:hover{transform:translateY(-1px)}
-.chip.active{border-color:var(--ring);background:color-mix(in oklab, var(--ring) 10%, #fff)}
+.chip:hover{ transform:translateY(-1px) }
+.chip.active{ border-color:var(--ring); background:color-mix(in oklab, var(--ring) 10%, #fff) }
 
-/* ---------- Cards grid ---------- */
+/* ===================== Cards grid ===================== */
 .grid{
-  display:grid;gap:18px;
+  display:grid; gap:18px;
   grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
   margin-top:18px;
 }
@@ -104,36 +104,37 @@ img,svg{max-width:100%;height:auto}
   transform:translateY(-2px);
   border-color:color-mix(in oklab, var(--ring) 35%, var(--border));
 }
-.kicker{font-size:12px;color:var(--muted)}
-.card h3{margin:4px 0 4px;font-size:20px;letter-spacing:-.02em}
+.kicker{ font-size:12px; color:var(--muted) }
+.card h3{ margin:4px 0 4px; font-size:20px; letter-spacing:-.02em }
 
-/* badges under cards */
-.meta{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+/* Badges under cards */
+.meta{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap }
 .badge{
-  font-size:12px;background:#eef2ff;color:#3949ab;
-  border-radius:999px;padding:4px 8px
+  font-size:12px; background:#eef2ff; color:#3949ab;
+  border-radius:999px; padding:4px 8px;
 }
 
-/* ---------- Prose (About/Terms/Privacy) ---------- */
-.prose h1{font-size:2rem;font-weight:800;margin:0 0 .75rem}
-.prose h2{font-size:1.25rem;font-weight:700;margin:1.25rem 0 .5rem}
-.prose p{margin:.75rem 0}
-.prose ul{margin:.5rem 0 .75rem 1.25rem}
-.prose li{margin:.25rem 0}
-.prose a{color:#2563eb;text-decoration:underline}
-table{border-collapse:collapse}
-th,td{border:1px solid var(--border);padding:.5rem}
+/* ===================== Prose pages (About/Terms/Privacy/Docs content) ===================== */
+.prose h1{ font-size:2rem; font-weight:800; margin:0 0 .75rem }
+.prose h2{ font-size:1.25rem; font-weight:700; margin:1.25rem 0 .5rem }
+.prose p{ margin:.75rem 0 }
+.prose ul{ margin:.5rem 0 .75rem 1.25rem }
+.prose li{ margin:.25rem 0 }
+.prose a{ color:#2563eb; text-decoration:underline }
+table{ border-collapse:collapse }
+th,td{ border:1px solid var(--border); padding:.5rem }
 
-/* ---------- Buttons ---------- */
+/* ===================== Buttons ===================== */
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 14px;border-radius:10px;border:1px solid var(--border);
-  background:var(--panel);cursor:pointer
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border-radius:10px; border:1px solid var(--border);
+  background:var(--panel); cursor:pointer;
 }
-.btn.primary{background:var(--ring);border-color:var(--ring);color:#fff}
-.btn:focus{outline:0;box-shadow:0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent)}
+.btn.primary{ background:var(--ring); border-color:var(--ring); color:#fff }
+.btn:focus{ outline:0; box-shadow:0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent) }
 
-/* ---------- Formula preview chips (catalog & general) ---------- */
+/* ===================== Formula preview chips ===================== */
+/* Used in catalog cards and anywhere else */
 .formula-box{
   font-size:var(--formula-font);
   line-height:1.6;
@@ -146,41 +147,83 @@ th,td{border:1px solid var(--border);padding:.5rem}
   white-space:pre-wrap;
 }
 
-/* ---------- Single-formula page: force black text on white ---------- */
+/* Single-formula page: force black text on white (fixes Android/Samsung auto-dark) */
 .formula-box--light{
   background:#ffffff !important;
   color:#0f172a !important;
-  -webkit-text-fill-color:currentColor; /* guard vs. Android/Samsung dark overrides */
+  -webkit-text-fill-color:currentColor; /* guards against platform overrides */
 }
 @media (max-width:640px){
-  .formula-box--light{font-size:15px}
+  .formula-box--light{ font-size:15px }
 }
 
-/* ---------- Docs layout: fix mobile right-shift ---------- */
-/* If your docs markup wraps content as:
-   <div class="docs">
-     <aside class="toc">...</aside>
-     <article class="prose docs-content">...</article>
-   </div>
+/* ===================== Docs layout helpers ===================== */
+/* Recommended markup:
+   <main class="docs">
+     <aside class="toc">…</aside>
+     <article class="prose docs-content">…</article>
+   </main>
 */
 .docs{
-  display:grid;
-  gap:20px;
-  grid-template-columns:1fr;       /* stack on mobile */
-  align-items:start;
+  display:grid; gap:20px; align-items:start;
+  grid-template-columns:1fr; /* stack on mobile */
 }
-.docs-content{ min-width:0; }      /* prevent overflow pushing layout */
+.docs-content{ min-width:0; }        /* prevent overflow pushing layout */
 .toc{ font-size:14px; color:var(--muted); }
 .toc h4{ margin:0 0 8px; color:var(--fg); }
 
 @media (min-width:960px){
-  .docs{ grid-template-columns:240px 1fr; }  /* 2 cols on desktop */
+  .docs{ grid-template-columns:240px 1fr; } /* 2 cols on desktop */
   .toc{ position:sticky; top:76px; }
 }
 
-/* Hard overrides if existing page used margins or different class names */
+/* ===================== Docs: aggressive mobile fix ===================== */
+/* Neutralizes legacy layouts that push text to the right on phones */
 @media (max-width:959px){
-  .docs-grid{ display:block !important; }
-  .docs-aside, .toc{ position:static !important; width:100% !important; }
-  .prose, .docs-content{ margin:0 !important; }
+
+  /* 0) Last-resort guard against horizontal scroll */
+  html, body { overflow-x: hidden; }
+
+  /* 1) Hide TOC / “On this page” sidebars on phones */
+  aside.toc,
+  nav.toc,
+  .toc,
+  aside[aria-label="On this page"],
+  [aria-label="On this page"],
+  #on-this-page,
+  .on-this-page {
+    display: none !important;
+  }
+
+  /* 2) Flatten typical wrappers to a single column */
+  .docs,
+  .docs-grid,
+  main .content,
+  main .container,
+  .docs-layout {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 3) Force content full-width & remove stray offsets */
+  main,
+  main article,
+  .prose,
+  .docs-content,
+  article.prose {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    float: none !important;
+    min-width: 0 !important;
+  }
+
+  /* 4) Ensure left alignment */
+  .prose,
+  .prose * { text-align: left !important; }
+
+  /* 5) Prevent long tokens from pushing layout sideways */
+  .prose { overflow-wrap: anywhere; word-break: break-word; }
 }
