@@ -9,31 +9,29 @@ import Footer from "./components/Footer";
 export const metadata = {
   title: "UsefulFormula",
   description: "1400+ formulas across 14 categories",
-  // You can also put the verification meta here if you prefer:
+  // If you prefer, you can also set:
   // other: { "google-adsense-account": "ca-pub-8441641457342117" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // If you use a strict CSP with nonces later, plumb it here:
-  const cspNonce: string | undefined = undefined;
+  const cspNonce: string | undefined = undefined; // wire this if you add a strict CSP
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* AdSense verification meta (keeps it simple for the crawler) */}
+        {/* AdSense verification meta (simple + crawler-friendly) */}
         <meta name="google-adsense-account" content="ca-pub-8441641457342117" />
 
         {/* Performance: preconnect to ad origins */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="" />
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="" />
-        <link rel="preconnect" href="https://tpc.googlesyndication.com" crossOrigin="" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://tpc.googlesyndication.com" crossOrigin="anonymous" />
 
-        {/* AdSense loader: present in raw HTML so crawlers see it */}
+        {/* AdSense loader (rendered in raw <head> so crawlers see it) */}
         <Script
           id="adsbygoogle-loader"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8441641457342117"
           crossOrigin="anonymous"
-          // 'beforeInteractive' ensures the tag is emitted in <head> HTML.
           strategy="beforeInteractive"
           // nonce={cspNonce} // uncomment if you add a CSP nonce
         />
