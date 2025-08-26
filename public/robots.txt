@@ -1,0 +1,10 @@
+User-agent: *
+Disallow:
+
+# AdSense crawler must be allowed
+User-agent: Mediapartners-Google
+Disallow:
+
+# Optional but helpful:
+Sitemap: https://www.usefulformula.com/sitemap.xml
+Host: www.usefulformula.com
