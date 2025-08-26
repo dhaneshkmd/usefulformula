@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           any time.
         </p>
 
-        {/* Cookiebot Declaration Script */}
+        {/* Cookiebot Declaration Script (injects the table below) */}
         <Script
           id="CookieDeclaration"
           src="https://consent.cookiebot.com/0b1b1580-5f2d-476b-99a6-94adb7c80063/cd.js"
@@ -50,14 +50,21 @@ export default function PrivacyPage() {
         />
 
         {/* Cookiebot injects the table here */}
-        <div id="CookieDeclaration"></div>
+        <div id="CookieDeclaration" aria-label="Cookie declaration table" />
 
-        {/* Client-side button to reopen banner */}
+        <p style={{ marginTop: 16 }}>
+          To update your preferences later, reopen the consent banner:
+        </p>
+
+        {/* Client-side button to reopen banner (kept separate to avoid server event handlers) */}
         <CookieSettingsButton />
 
         <h2>Contact</h2>
         <p>
-          Questions about privacy? <a className="underline" href="/contact">Contact us</a>.
+          Questions about privacy?{" "}
+          <a className="underline" href="/contact">
+            Contact us
+          </a>.
         </p>
       </section>
     </main>
