@@ -1,4 +1,6 @@
 // app/privacy/page.tsx
+import Script from "next/script";
+
 export const metadata = { title: "Privacy Policy — UsefulFormula" };
 
 export default function PrivacyPage() {
@@ -24,13 +26,49 @@ export default function PrivacyPage() {
 
         <h2>Storage &amp; Third Parties</h2>
         <p>
-          We may use reputable analytics, email, or hosting providers. We do not sell personal data.
+          We may use reputable analytics, advertising, and hosting providers. We do not sell personal data.
         </p>
 
         <h2>Your Choices</h2>
         <p>
-          You can request deletion of messages you’ve sent to us. For cookies/analytics, adjust your browser settings.
+          You can request deletion of messages you’ve sent to us. For cookies/analytics, adjust your browser
+          settings or use the cookie consent controls below.
         </p>
+
+        <h2>Cookie Declaration</h2>
+        <p>
+          Below is a live overview of the cookies used on this website. You can withdraw or change your consent at
+          any time.
+        </p>
+
+        {/* Cookiebot Declaration Script */}
+        <Script
+          id="CookieDeclaration"
+          src="https://consent.cookiebot.com/0b1b1580-5f2d-476b-99a6-94adb7c80063/cd.js"
+          strategy="afterInteractive"
+          type="text/javascript"
+          async
+        />
+
+        {/* Fallback container (Cookiebot replaces this with the cookie table) */}
+        <div id="CookieDeclaration"></div>
+
+        <button
+          style={{
+            marginTop: "1.5rem",
+            padding: "0.5rem 1rem",
+            border: "1px solid #ccc",
+            borderRadius: 6,
+            background: "#f9f9f9",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            // @ts-ignore
+            window?.Cookiebot?.renew();
+          }}
+        >
+          Change your cookie settings
+        </button>
 
         <h2>Contact</h2>
         <p>
