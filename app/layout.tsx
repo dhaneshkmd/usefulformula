@@ -18,6 +18,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* --- COOKIEBOT (must be FIRST in <head>) --- */}
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          strategy="beforeInteractive"
+          data-cbid="0b1b1580-5f2d-476b-99a6-94adb7c80063"   // your cbid
+          data-blockingmode="auto"                            // auto-block mode
+          type="text/javascript"
+          // nonce={cspNonce}
+        />
+
         {/* AdSense verification meta (crawler-friendly) */}
         <meta name="google-adsense-account" content="ca-pub-8441641457342117" />
 
@@ -28,13 +39,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
 
-        {/* AdSense loader (in raw <head> so crawlers see it) */}
+        {/* AdSense loader (Cookiebot will manage consent/auto-block) */}
         <Script
           id="adsbygoogle-loader"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8441641457342117"
           crossOrigin="anonymous"
           strategy="beforeInteractive"
           // nonce={cspNonce}
+          // If you ever switch Cookiebot to manual mode, add:
+          // data-cookieconsent="marketing" type="text/plain"
         />
 
         {/* Google Analytics (GA4) */}
@@ -42,6 +55,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           id="ga4-src"
           src="https://www.googletagmanager.com/gtag/js?id=G-4H77J1RSF4"
           strategy="afterInteractive"
+          // If using Cookiebot manual mode:
+          // data-cookieconsent="statistics" type="text/plain"
         />
         <Script id="ga4-init" strategy="afterInteractive">
           {`
