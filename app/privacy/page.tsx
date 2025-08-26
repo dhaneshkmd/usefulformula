@@ -1,5 +1,6 @@
 // app/privacy/page.tsx
 import Script from "next/script";
+import CookieSettingsButton from "../components/CookieSettingsButton";
 
 export const metadata = { title: "Privacy Policy — UsefulFormula" };
 
@@ -25,9 +26,7 @@ export default function PrivacyPage() {
         </ul>
 
         <h2>Storage &amp; Third Parties</h2>
-        <p>
-          We may use reputable analytics, advertising, and hosting providers. We do not sell personal data.
-        </p>
+        <p>We may use reputable analytics, advertising, and hosting providers. We do not sell personal data.</p>
 
         <h2>Your Choices</h2>
         <p>
@@ -50,32 +49,15 @@ export default function PrivacyPage() {
           async
         />
 
-        {/* Fallback container (Cookiebot replaces this with the cookie table) */}
+        {/* Cookiebot injects the table here */}
         <div id="CookieDeclaration"></div>
 
-        <button
-          style={{
-            marginTop: "1.5rem",
-            padding: "0.5rem 1rem",
-            border: "1px solid #ccc",
-            borderRadius: 6,
-            background: "#f9f9f9",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            // @ts-ignore
-            window?.Cookiebot?.renew();
-          }}
-        >
-          Change your cookie settings
-        </button>
+        {/* Client-side button to reopen banner */}
+        <CookieSettingsButton />
 
         <h2>Contact</h2>
         <p>
-          Questions about privacy?{" "}
-          <a className="underline" href="/contact">
-            Contact us
-          </a>.
+          Questions about privacy? <a className="underline" href="/contact">Contact us</a>.
         </p>
       </section>
     </main>
