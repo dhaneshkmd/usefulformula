@@ -9,8 +9,7 @@ import Footer from "./components/Footer";
 export const metadata = {
   title: "UsefulFormula",
   description: "1400+ formulas across 14 categories",
-  // If you prefer, you can also set:
-  // other: { "google-adsense-account": "ca-pub-8441641457342117" },
+  // other: { "google-adsense-account": "ca-pub-8441641457342117" }, // optional: can live here too
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,22 +18,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* AdSense verification meta (simple + crawler-friendly) */}
+        {/* AdSense verification meta (crawler-friendly) */}
         <meta name="google-adsense-account" content="ca-pub-8441641457342117" />
 
-        {/* Performance: preconnect to ad origins */}
+        {/* Performance: preconnects for AdSense + GA */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://tpc.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.google-analytics.com" crossOrigin="anonymous" />
 
-        {/* AdSense loader (rendered in raw <head> so crawlers see it) */}
+        {/* AdSense loader (in raw <head> so crawlers see it) */}
         <Script
           id="adsbygoogle-loader"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8441641457342117"
           crossOrigin="anonymous"
           strategy="beforeInteractive"
-          // nonce={cspNonce} // uncomment if you add a CSP nonce
+          // nonce={cspNonce}
         />
+
+        {/* Google Analytics (GA4) */}
+        <Script
+          id="ga4-src"
+          src="https://www.googletagmanager.com/gtag/js?id=G-4H77J1RSF4"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4H77J1RSF4');
+          `}
+        </Script>
       </head>
 
       <body className="min-h-screen flex flex-col">
