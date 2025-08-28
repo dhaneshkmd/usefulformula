@@ -1,10 +1,11 @@
+# Global rules
 User-agent: *
-Disallow:
+Allow: /
 
-# AdSense crawler must be allowed
+# AdSense crawler (must always be allowed)
 User-agent: Mediapartners-Google
-Disallow:
+Allow: /
 
-# Optional but helpful:
+# Helpful directives
 Sitemap: https://www.usefulformula.com/sitemap.xml
 Host: www.usefulformula.com
