@@ -1,29 +1,50 @@
 // app/sitemap.ts
 import { MetadataRoute } from "next";
-import { allFormulas } from "./lib/data"; // adjust to your data export
+import { formulas } from "./lib/data"; // ✅ correct export
 
-const base = "https://www.usefulformula.com";
+const BASE = "https://www.usefulformula.com";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  return [
-    { url: `${base}/`, lastModified: new Date() },
-    { url: `${base}/faq`, lastModified: new Date() },
-    { url: `${base}/about`, lastModified: new Date() },
-    { url: `${base}/contact`, lastModified: new Date() },
-    { url: `${base}/docs`, lastModified: new Date() },
-    { url: `${base}/terms`, lastModified: new Date() },
-    { url: `${base}/privacy`, lastModified: new Date() },
-    // categories
-    "math",
-    "physics",
-    "chemistry",
-    "engineering",
-    "finance",
-    "health",
-    "life",
-  ].map((c) =>
-    typeof c === "string"
-      ? { url: `${base}/${c}`, lastModified: new Date() }
-      : c
-  );
+export default function sitemap(): MetadataRoute.Sitemap {
+  // Static pages
+  const staticPaths = [
+    "/",
+    "/faq",
+    "/about",
+    "/contact",
+    "/docs",
+    "/terms",
+    "/privacy",
+    // Category hubs
+    "/math",
+    "/physics",
+    "/chemistry",
+    "/engineering",
+    "/finance",
+    "/health",
+    "/life",
+  ];
+
+  const staticEntries: MetadataRoute.Sitemap = staticPaths.map((p) => ({
+    url: `${BASE}${p}`,
+    lastModified: new Date(),
+  }));
+
+  // Formula detail pages
+  const list = (formulas as any[]) ?? [];
+  const formulaEntries: MetadataRoute.Sitemap = list.map((f) => {
+    const id = encodeURIComponent(String(f.id));
+    // Try to pick a meaningful last modified date if present
+    const last =
+      (f.updatedAt as string) ||
+      (f.updated_at as string) ||
+      (f.lastModified as string) ||
+      new Date().toISOString();
+
+    return {
+      url: `${BASE}/formula/${id}`,
+      lastModified: new Date(last),
+    };
+  });
+
+  return [...staticEntries, ...formulaEntries];
 }
