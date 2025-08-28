@@ -253,3 +253,21 @@ th,td{ border:1px solid var(--border); padding:.5rem }
   /* 5) Prevent long tokens from pushing layout sideways */
   .prose { overflow-wrap: anywhere; word-break: break-word; }
 }
+
+/* ===================== Footer fixes (spacing for links) ===================== */
+/* Force footer navs to stack links vertically with space between */
+footer nav{
+  display:flex;
+  flex-direction:column;
+  row-gap:8px;              /* space between links */
+}
+
+/* Make each link its own row with comfortable reading */
+footer nav a{
+  display:block;
+  line-height:1.6;
+  white-space:normal;       /* wrap words normally (no squashing) */
+}
+
+/* Slight extra space under section headings */
+footer h4{ margin-bottom:12px; }
