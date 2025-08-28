@@ -29,26 +29,39 @@ const load = cache((): Formula[] => {
   }
 });
 
-export function formulas(): Formula[] {
-  return load();
-}
+/** 
+ * Export a value (array) named `formulas` so other modules (e.g., sitemap.ts)
+ * can import { formulas } and treat it as data, not a function.
+ */
+export const formulas: Formula[] = load();
 
+/** Optional: last modified time of the JSON file (handy for sitemaps) */
+export const dataLastModified: Date = (() => {
+  try {
+    const stat = fs.statSync(FILE);
+    return stat.mtime;
+  } catch {
+    return new Date();
+  }
+})();
+
+/** Keep function helpers for convenience — backed by the same in-memory array */
 export function categories(): string[] {
-  return Array.from(new Set(load().map((f) => f.category))).sort();
+  return Array.from(new Set(formulas.map((f) => f.category))).sort();
 }
 
 export function byCategory(cat: string): Formula[] {
   const c = cat.toLowerCase();
-  return load().filter((f) => f.category.toLowerCase() === c);
+  return formulas.filter((f) => f.category.toLowerCase() === c);
 }
 
 export function findById(id: string): Formula | undefined {
   const i = id.toLowerCase();
-  return load().find((f) => f.id.toLowerCase() === i);
+  return formulas.find((f) => f.id.toLowerCase() === i);
 }
 
 export function countByCategory(): Record<string, number> {
-  return load().reduce((acc, f) => {
+  return formulas.reduce((acc, f) => {
     acc[f.category] = (acc[f.category] ?? 0) + 1;
     return acc;
   }, {} as Record<string, number>);
@@ -64,11 +77,10 @@ export function countByCategory(): Record<string, number> {
 export function findBySlugParts(parts: string[]): Formula | undefined {
   if (!parts?.length) return undefined;
 
-  const all = load();
   const [p0, p1, ...rest] = parts;
   const maybeTitle = rest.length ? rest.join("-") : p1; // tolerate extra dashes
 
-  return all.find((f) => {
+  return formulas.find((f) => {
     const cat = toSlug(f.category);
     const sub = f.subcategory?.trim() ? toSlug(f.subcategory) : undefined;
     const title = toSlug(f.title);
